@@ -1,24 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
+import Typography from '@material-ui/core/Typography';
+
+
 const Products = props => {
 
+  
   return (
-    <div>
-      <h2> Product List </h2>
-      <ul>
-        {props.products.displayProducts.map(product => {
-          return <li key={product.name}>{product.name}</li>
+    <>
+
+        <Typography variant="h5">PRODUCTS:</Typography>
+       <ul>
+         {props.displayProducts.map(product => { 
+          return( 
+          <li key={product.name}> 
+          Product:{product.name}
+          </li> 
+            );
         })}
       </ul>
-    </div>
+      </>
   );
 };
 
 const mapStateToProps = state => {
-
   return {
-    products: state.products,
+    products: state.products.products,
+    displayProducts: state.products.displayProducts,
   };
 };
 

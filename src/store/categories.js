@@ -1,8 +1,8 @@
 let initialState = {
   categories: [
-    {normalizedName: 'firstcategory', displayName:'Category 1', description:'first category' },
-    {normalizedName: 'secondcategory', displayName:'Category 2', description:'second category' },
-    {normalizedName: 'thirdcategory', displayName:'Category 3', description:'third category' },
+    {name: 'firstcategory', displayName:'Category 1', description:'first category' },
+    {name: 'secondcategory', displayName:'Category 2', description:'second category' },
+    {name: 'thirdcategory', displayName:'Category 3', description:'third category' },
   ],
   activeCategory: 'Category 1',
 }
@@ -21,9 +21,9 @@ export default (state = initialState, action) => {
 
 };
 
-export const changeCategory = (category) => {
+export const changeCategory = (name) => {
   return {
     type: 'CHANGE',
-    payload: category,
+    payload: name,
   };
 };
