@@ -1,6 +1,7 @@
 import React from 'react';
+// import { connect } from 'react-redux';
 
-// import CurrentCategory from './components/storefront/current-category.js';
+import CurrentCategory from './components/storefront/current-category.js';
 import Categories from './components/storefront/categories.js';
 import Products from './components/storefront/products.js';
 import Header from './components/header/header.js';
@@ -13,7 +14,7 @@ function App() {
       <Header />
       <main>
         <Categories />
-        {/* <CurrentCategory /> */}
+        <CurrentCategory />
         <Products />
       </main>
       <Footer />

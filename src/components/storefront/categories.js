@@ -6,12 +6,15 @@ const Categories = props => {
   let categoriesMap = props.category.categories;
   return (
     <section className="categories">
+      <h2>Select a Category</h2>
       <ul>
         {categoriesMap.map(category => 
-          <li key={category.displayName} onClick={() => props.changeCategory(category)}>{category.displayName}</li>
+          <li key={category.displayName} 
+          onClick={() => props.changeCategory(category)}>
+            {category.displayName}
+            </li>
           )}
       </ul>
-      
     </section>
   )
 }

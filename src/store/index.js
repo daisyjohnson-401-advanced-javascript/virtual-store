@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from 'redux';
-
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import products from './products';
 import categories from './categories';
-// import products from './products';
 
-let reducers = combineReducers({ categories }); //comb
+
+let reducers = combineReducers({ products, categories }); //comb
 
 const store = () => {
   return createStore(reducers, composeWithDevTools());
