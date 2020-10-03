@@ -6,6 +6,7 @@ import Categories from './components/storefront/categories.js';
 import Products from './components/storefront/products.js';
 import Header from './components/header/header.js';
 import Footer from './components/footer/footer.js';
+import SimpleCart from './components/storefront/simpleCart.js';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Categories />
         <CurrentCategory />
         <Products />
+        <SimpleCart />
       </main>
       <Footer />
     </>

@@ -10,8 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    color: 'white',
+    background: 'linear-gradient(45deg, #c31432 30%, #240b36 90%)',
+    color: 'grey',
   },
   appBar: {
     zIndex: 1000
