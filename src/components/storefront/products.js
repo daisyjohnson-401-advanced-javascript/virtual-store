@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addProductsToCart } from '../../store/products.js';
+import { addProductsToCart } from '../../store/simpleCart.js';
+
 
 
 import Typography from '@material-ui/core/Typography';
@@ -20,6 +21,7 @@ const Products = props => {
           {product.name}
           {product.description}
           {product.price}
+          {console.log('INVENTORY', product.inventory)}
           <button onClick={() => props.addProductsToCart(product)}>Add to your Cart!</button>
           </li> 
             );

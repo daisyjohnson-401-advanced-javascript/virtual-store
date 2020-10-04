@@ -1,5 +1,5 @@
 const initialState = {
-  items: [],
+  cartItems: [],
 
 }
 
@@ -9,10 +9,28 @@ export default (state = initialState, action) => {
     switch (type) {
 
       case 'Add': 
-      let items = state.items;
-      items.push(payload)
-      return { items };
+      let items = state.cartItems.push(payload);
+      return {...state, items};
+
+      case 'Remove':
+        let removeItems = state.cartItems.filter(item => item !== payload)
+        return{cartItems: removeItems}
+
     default:
       return state;
     }
+}
+
+export const addProductsToCart = (product) => {
+  return {
+    type: 'Add',
+    payload: product,
+  }
+}
+
+export const removeItemsFromCart = (product) => {
+  return {
+    type: 'Remove',
+    payload: product,
+  }
 }

@@ -21,9 +21,9 @@ export default (state = initialState, action) => {
 
 };
 
-export const changeCategory = (name) => {
+export const changeCategory = (active) => {
   return {
     type: 'CHANGE',
-    payload: name,
+    payload: active,
   };
 };

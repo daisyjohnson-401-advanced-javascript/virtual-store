@@ -9,48 +9,29 @@
 
 // define initial state
 const initialState = {
-  products:[
-    {category:'firstcategory', name: 'Product One', description: 'product', price:'$1.00', invetory: 1},
-    {category:'secondcategory', name: 'Product Two', description: 'product', price:'$1.00', invetory: 1},
-    {category:'thirdcategory', name: 'Product Three', description: 'product', price:'$1.00', invetory: 1},
+  products: [
+    { category: 'firstcategory', name: 'Product One', description: 'product', price: '$1.00', inventory: 6 },
+    { category: 'secondcategory', name: 'Product Two', description: 'product', price: '$1.00', inventory: 6 },
+    { category: 'thirdcategory', name: 'Product Three', description: 'product', price: '$1.00', inventory: 6 },
   ],
   displayProducts: [],
 }
 
 // TODO define reducer
-export default ( state = initialState, action) => {
-  const{ type, payload } = action;
+export default (state = initialState, action) => {
+  const { type, payload } = action;
 
   switch (type) {
 
     case 'CHANGE':
       let displayProducts = state.products.filter(product => {
         return product.category === payload.name;
-        
+
       });
-  
-       return {...state, displayProducts};
 
-       
-    case 'Add':
-      let products = []
-      state.products.forEach(product => {
-        if(product.name === payload.name){
-          product.inventory -= 1;
-        }
-        products.push(product)
-      })
-      return {...state, products}
-   
-    default:
-      return state;
-  }
-};
+      return { ...state, displayProducts };
 
-
-export const addProductsToCart = (product) => {
-  return {
-    type: 'Add',
-    payload: product,
+      default:
+        return state;
   }
 }

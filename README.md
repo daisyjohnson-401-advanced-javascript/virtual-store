@@ -13,6 +13,8 @@
 * Continue to use Material UI Components for layout and styling
 * Add a “Cart” indicator to the header, like this: Cart (0)
 * Create a new Cart component to show the items in the user’s cart
+
+
 ## UML 
 
 ![UML](./assets/virtualstoreuml.png)
