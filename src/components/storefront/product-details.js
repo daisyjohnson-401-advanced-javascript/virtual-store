@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getProducts, removeInventory } from '../../store/products.js';
-import { getSingleProduct } from '../../store/product-details.js';
+import { removeInventory } from '../../store/products.js';
 import { addProductsToCart } from '../../store/simpleCart.js';
 
 import Button from '@material-ui/core/Button';
@@ -9,7 +8,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
@@ -39,13 +37,13 @@ cardContent: {
 }));
 
 
-const Products = props => {
+const ProductDetails = props => {
 
 const classes = useStyles();
   
-useEffect(() => {
-    props.getProducts();
-  }, [props])
+// useEffect(() => {
+//     props.getProduct();
+//   }, [props])
 
   function addToCart(product){
     props.removeInventory(product);
@@ -54,43 +52,38 @@ useEffect(() => {
 
   return (
     <>
-
-    <Container className={classes.cardGrid} maxWidth='md'>
+{console.log('DETAILS', props.product)}
+    <Container className={classes.cardGrid} maxWidth='lg'>
     <Grid container spacing={1}>
-      {props.displayProducts.map(product => { 
-        return <Grid item key={product.id} xs={12} sm={6} md={4}>
+   
+         <Grid item key={props.details.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia 
             className={classes.cardMedia}
-            image={`https://source.unsplash.com/random?${product.name}`}
-            title={product.name} />
+            image={`https://source.unsplash.com/random?${props.details.name}`}
+            title={props.details.name} />
             <CardContent className={classes.CardContent}>
               <Typography gutterBottom variant='h5'>
-               Product: {product.name}
+               Product: {props.details.name}
               </Typography>
               <Typography gutterBottom variant='h5'>
-                Description: {product.description}
+                Description: {props.details.description}
               </Typography>
               <Typography gutterBottom variant='h5'>
-                Price: {`$ ${product.price}`}
+                Price: {`$ ${props.details.price}`}
               </Typography>
               <Typography gutterBottom variant='h5'>
-                In Stock: {product.inStock}
+                In Stock: {props.details.inStock}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={() => addToCart(product)}>Add to Cart</Button>
-              {/* <Link className={classes.links} to='/products'>
-                <Button variant='outlined' onClick={() => props.getSingleProduct(product)}>
-                  View Details
-                </Button>
-              </Link> */}
+              <Button onClick={() => addToCart(props.details)}>Add to Cart</Button>
             </CardActions>
           </Card>
 
           </Grid>     
 
-        })}
+   
     </Grid>
     </Container>
       
@@ -100,14 +93,14 @@ useEffect(() => {
 
 const mapStateToProps = state => {
   return {
-    products: state.products,
-    displayProducts: state.products.displayProducts,
+    product: state.products,
+    details: state.products.displayProducts,
   };
 };
 
-const mapDispatchToProps = { addProductsToCart, getProducts, removeInventory, getSingleProduct }
+const mapDispatchToProps = { addProductsToCart, removeInventory }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Products);
+)(ProductDetails);

@@ -1,10 +1,13 @@
+import axios from 'axios';
+
 let initialState = {
-  categories: [
-    {normalizedName: 'firstcategory', displayName:'Category 1', description:'first category' },
-    {normalizedName: 'secondcategory', displayName:'Category 2', description:'second category' },
-    {normalizedName: 'thirdcategory', displayName:'Category 3', description:'third category' },
-  ],
-  activeCategory: 'Category 1',
+  categories:{
+
+  },
+ 
+  activeCategory: {
+
+  },
 }
 
 export default (state = initialState, action) => {
@@ -15,15 +18,30 @@ export default (state = initialState, action) => {
   
     return {...state, activeCategory: payload};
 
+    case  'GET_CATEGORY':
+    
+    return {...state, categories: payload};
+
     default:
       return state;
   }
 
 };
 
-export const changeCategory = (category) => {
+export const changeCategory = (active) => {
   return {
     type: 'CHANGE',
-    payload: category,
+    payload: active,
   };
 };
+
+export function getCategory () {
+
+  return async function(dispatch){
+  const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+  dispatch({
+    type: 'GET_CATEGORY',
+    payload: response.data.results,
+  })
+}
+}

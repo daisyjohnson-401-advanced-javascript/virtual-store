@@ -6,3 +6,4 @@ it('should have initial state', () => {
 
   expect(state.activeCategory).toEqual('Category 1');
 })
+

@@ -1,5 +1,9 @@
 # Virtual Store
 
+## TODO
+- make unique ids 
+- make checkout page
+- inventory thing?
 ## Lab 36
 * Create a visually appealing site using Material UI
 * Use a Redux Store to manage the state of categories and items in the store
@@ -7,6 +11,13 @@
 * When the user selects (clicks on) a category …
 * Identify that category as selected (change of class/display)
 * Show a list of products associated with the category
+
+
+## Lab 37
+* Continue to use Material UI Components for layout and styling
+* Add a “Cart” indicator to the header, like this: Cart (0)
+* Create a new Cart component to show the items in the user’s cart
+
 
 ## UML 
 
