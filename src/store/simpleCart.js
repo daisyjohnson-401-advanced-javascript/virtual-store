@@ -16,21 +16,30 @@ export default (state = initialState, action) => {
         let removeItems = state.cartItems.filter(item => item !== payload)
         return{cartItems: removeItems}
 
+      case 'Clear':
+        return initialState;
+
     default:
       return state;
-    }
-}
+    };
+};
 
 export const addProductsToCart = (product) => {
   return {
     type: 'Add',
     payload: product,
-  }
-}
+  };
+};
 
 export const removeItemsFromCart = (product) => {
   return {
     type: 'Remove',
     payload: product,
-  }
-}
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: 'CLEAR',
+  };
+};

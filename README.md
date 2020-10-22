@@ -1,5 +1,9 @@
 # Virtual Store
 
+## TODO
+- make unique ids 
+- make checkout page
+- inventory thing?
 ## Lab 36
 * Create a visually appealing site using Material UI
 * Use a Redux Store to manage the state of categories and items in the store

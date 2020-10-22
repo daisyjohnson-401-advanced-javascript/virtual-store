@@ -1,18 +1,9 @@
-
-// State should be a list of all products
-// Each product should have a category association, name, description, price, inventory count
-// Create an action that will trigger the reducer to filter the product list when the active category is changed
-// HINT: Different reducers can respond to the same actions
-// Create a reducer that will filter the products list based on the active category
-// Create an action that will trigger the reducer to reduce the stock counter
-// Create a reducer that reduces the # in stock when that action is dispatched
+import axios from 'axios';
 
 // define initial state
 const initialState = {
   products: [
-    { category: 'firstcategory', name: 'Product One', description: 'product', price: '$1.00', inventory: 6 },
-    { category: 'secondcategory', name: 'Product Two', description: 'product', price: '$1.00', inventory: 6 },
-    { category: 'thirdcategory', name: 'Product Three', description: 'product', price: '$1.00', inventory: 6 },
+  
   ],
   displayProducts: [],
 }
@@ -31,7 +22,57 @@ export default (state = initialState, action) => {
 
       return { ...state, displayProducts };
 
+    case 'GET_PRODUCTS':
+      return{...state, products: payload}
+
       default:
         return state;
   }
+
 }
+
+export function getProducts () {
+  
+
+  return async function(dispatch){
+    const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+    dispatch({
+      type: 'GET_PRODUCTS',
+      payload: response.data.results,
+    })
+  }
+}
+
+export const removeInventory = (product) => async (dispatch) =>{
+  product.inStock = product.inStock - 1;
+  await axios( {
+    url: `https://api-js401.herokuapp.com/api/v1/products/${product.id}`,
+    method: 'put',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: { 'Content-Type': 'application/json'},
+    data: JSON.stringify(product),
+  });
+  const response = await axios.get (`https://api-js401.herokuapp.com/api/v1/products`);
+  dispatch({
+    type: 'GET_PRODUCTS',
+    payload: response.data,
+  });
+};
+
+export const addInventory = (product) => async (dispatch) =>{
+  product.inStock = product.inStock + 1;
+  await axios( {
+    url: `https://api-js401.herokuapp.com/api/v1/products/${product.id}`,
+    method: 'put',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: { 'Content-Type': 'application/json'},
+    data: JSON.stringify(product),
+  });
+  const response = await axios.get (`https://api-js401.herokuapp.com/api/v1/products`);
+  dispatch({
+    type: 'GET_PRODUCTS',
+    payload: response.data,
+  });
+};
